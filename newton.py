@@ -24,7 +24,7 @@ def display_plot(radius, rotation_curve_values):
 
 # Main function
 def main():
-    radius = np.linspace(1, 10, 10000000)  # Adjust range and step as needed
+    radius = np.linspace(1, 10, 1000)  # Adjust range and step as needed
     mass = 1.5 * 10**41  # Adjust mass as needed
 
     rotation_curve_values = rotation_curve(radius, mass)

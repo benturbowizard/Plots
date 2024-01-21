@@ -26,18 +26,22 @@ def display_plot(radius, rotation_curve_values, title):
     ax.set_title(title)
     ax.legend()
 
+    # Zoom to the bottom left bend
+    ax.set_xlim(0, 1e9)  # Set x-axis limits
+    ax.set_ylim(0, 1e9)  # Set y-axis limits
+
     plt.savefig(save_path)
     plt.show()
 
 # Main function
 def main():
-    radius = np.linspace(1, 10, 10000000)  # Adjust range and step as needed
+    radius = np.linspace(1, 10, 1000)  # Adjust range and step as needed
     initial_mass = 1.5 * 10**41  # Adjust initial mass as needed
     initial_radius = 1.0  # Adjust initial radius as needed
 
     k_constant = 1e1  # Adjust decay constant as needed
 
-    time = np.linspace(0, 10, 10000000)  # Adjust time range and step as needed
+    time = np.linspace(0, 10, 1000)  # Adjust time range and step as needed
 
     # Calculate mass based on exponential decay
     mass_values = decayed_mass(initial_mass, k_constant, time)
@@ -45,13 +49,11 @@ def main():
     # Calculate radius based on expanding geometry
     radius_values = relative_radius(initial_radius, k_constant, time)
 
-    # Calculate relativistic rotation curve
-    relativistic_rotation_curve_values = relativistic_rotation_curve(radius_values, mass_values)
+    # Calculate relativistic rotation curve for each radius
+    relativistic_rotation_curve_values = [relativistic_rotation_curve(r, m) for r, m in zip(radius_values, mass_values)]
 
     # Display the relativistic rotation curve plot
     display_plot(radius_values, relativistic_rotation_curve_values, "Mass Distance Relativistic Galaxy Rotation Curve")
-
-
 
 if __name__ == "__main__":
     main()
