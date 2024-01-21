@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tkinter import Tk, Canvas, Frame, BOTH
 
+save_path = "newton_plot.png"
+
 # Function to calculate rotation curve based on Newton's gravity
 def rotation_curve(radius, mass):
     G = 6.674 * 10**(-11)  # Gravitational constant
@@ -13,9 +15,10 @@ def display_plot(radius, rotation_curve_values):
     ax.plot(radius, rotation_curve_values, label="Rotation Curve")
     ax.set_xlabel('Radius (m)')
     ax.set_ylabel('Rotation Curve (m/s)')
-    ax.set_title('Galaxy Rotation Curve')
+    ax.set_title('Newton Galaxy Rotation Curve')
     ax.legend()
 
+    plt.savefig(save_path)
     plt.show()
 
 
@@ -25,6 +28,7 @@ def main():
     mass = 1.5 * 10**41  # Adjust mass as needed
 
     rotation_curve_values = rotation_curve(radius, mass)
+
     display_plot(radius, rotation_curve_values)
 
 if __name__ == "__main__":

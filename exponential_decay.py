@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+save_path = "exponential_decay_plot.png"
+
 # Function to calculate relativistic rotation curve based on Schwarzschild metric
 def relativistic_rotation_curve(radius, mass):
     G = 6.674 * 10**(-11)  # Gravitational constant
@@ -24,6 +26,7 @@ def display_plot(radius, rotation_curve_values, title):
     ax.set_title(title)
     ax.legend()
 
+    plt.savefig(save_path)
     plt.show()
 
 # Main function
